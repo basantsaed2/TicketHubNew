@@ -13,6 +13,7 @@ import { MdMenuOpen } from "react-icons/md";
 import LogoImage from '../../Assets/Images/Logo.png'
 const Navbar = () => {
        const location = useLocation();
+       const isHome = location.pathname === '/';
        const user = useSelector(state => state.user?.data);
        const [pages] = useState(['/auth/login', '/auth/sign_up']);
        const [toggleOpen, setToggleOpen] = useState(false);
@@ -28,7 +29,7 @@ const Navbar = () => {
                      {pages.some(page => location.pathname === page) ? (
                             ''
                      ) : (
-                            <nav className='relative w-full flex align-center justify-between py-2 px-6 bg-mainColor shadow-md'>
+                            <nav className='relative w-full flex align-center justify-between py-2 px-6 '>
                                    <div className='sm:w-9/12 lg:w-3/12 flex items-center justify-start gap-x-2 z-10'>
                                           <Link to={'/'} className="flex items-center justify-start gap-x-2">
                                                  {/* <MainIcon/> */}

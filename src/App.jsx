@@ -21,7 +21,7 @@ const App = () => {
     <div
       ref={scrollContainerRef}
       className='relative w-full bg-white flex flex-col items-center justify-between h-screen custom-scrollbar overflow-y-auto overflow-x-hidden'>
-      <div className="sticky top-0 w-full z-30">
+      <div className={`${location.pathname === '/' ? 'absolute' : 'sticky'} top-0 w-full z-50`}>
         <Navbar />
       </div>
       {/* Main Content Area */}
