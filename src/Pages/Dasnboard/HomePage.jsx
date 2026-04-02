@@ -149,7 +149,13 @@ const TravelBooking = () => {
 
   useEffect(() => {
     if (bookingListData) {
-      setCities(bookingListData.cities?.map(c => ({ value: String(c.id), label: c.name })) || []);
+      setCities(bookingListData.cities?.map(c => {
+        const country = bookingListData.countries?.find(cntry => cntry.id === c.country_id);
+        return { 
+          value: String(c.id), 
+          label: country ? `${c.name}, ${country.name}` : c.name 
+        };
+      }) || []);
       setCountries(bookingListData.countries?.map(c => ({ value: String(c.id), label: c.name })) || []);
       setCars(bookingListData.car_category?.map(c => ({ value: String(c.id), label: c.name })) || []);
     }
