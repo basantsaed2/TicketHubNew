@@ -92,7 +92,7 @@ const BookingSearchForm = ({
       cursor: 'pointer',
       ':active': { backgroundColor: '#fdba74' }
     }),
-    placeholder: (base) => ({ ...base, color: '#94a3b8', fontSize: '14px', fontWeight: '600' })
+    placeholder: (base) => ({ ...base, color: '#64748b', fontSize: '14px', fontWeight: '900' })
   };
 
   return (
