@@ -275,10 +275,10 @@ const TravelBooking = () => {
         
         {/* Hero Text */}
         <div className="relative z-10 text-center px-4 w-full max-w-5xl mt-24 mb-12">
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-tight mb-4 drop-shadow-2xl">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-black text-white tracking-tight leading-tight mb-4 drop-shadow-2xl">
             Ready to explore?
           </h1>
-          <p className="text-lg sm:text-xl md:text-3xl font-bold text-white/95 drop-shadow-lg tracking-wide">
+          <p className="text-lg md:text-xl lg:text-3xl font-bold text-white/95 drop-shadow-lg tracking-wide">
             Book your next journey instantly
           </p>
         </div>
