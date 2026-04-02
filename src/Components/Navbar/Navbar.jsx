@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { MdFavoriteBorder, MdRestaurantMenu, MdMenuOpen, MdClose } from 'react-icons/md';
 import { LuUserRound } from 'react-icons/lu';
 import { TbLogout } from "react-icons/tb";
+import { ChevronRight } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import { useAuth } from '../../Context/Auth';
 import LogoImage from '../../Assets/Images/Logo.png';
@@ -48,7 +49,7 @@ const Navbar = () => {
       {/* Brand Logo */}
       <div className='flex items-center justify-start z-10'>
         <Link to={'/'} className="flex items-center justify-start">
-          <div className={`h-14 sm:h-[70px] md:h-20 lg:h-[90px] flex items-center justify-start transition-all duration-300 opacity-100`}>
+          <div className={`h-16 sm:h-[80px] md:h-[100px] lg:h-[120px] flex items-center justify-start transition-all duration-300 opacity-100`}>
             <img src={LogoImage} className='object-contain w-auto h-full drop-shadow-sm' alt="TicketHub Logo" />
           </div> 
         </Link>
@@ -126,29 +127,49 @@ const Navbar = () => {
 
       {/* Mobile Menu Drawer */}
       <div
-        className={`fixed top-0 right-0 w-[85%] max-w-[340px] h-[100dvh] bg-white shadow-[-20px_0_40px_rgba(0,0,0,0.1)] flex flex-col items-center px-8 pb-10 transition-transform duration-[400ms] ease-[cubic-bezier(0.25,1,0.5,1)] z-[100] ${
+        className={`fixed top-0 right-0 w-[85%] max-w-[380px] h-[100dvh] bg-gradient-to-b from-white to-slate-50 shadow-[-30px_0_60px_rgba(0,0,0,0.15)] flex flex-col items-center pt-4 px-6 pb-10 transition-transform duration-[500ms] ease-[cubic-bezier(0.25,1,0.5,1)] z-[100] ${
           toggleOpen ? 'translate-x-0' : 'translate-x-[110%]'
-        } lg:hidden overflow-y-auto`}
+        } lg:hidden overflow-y-auto border-l border-slate-100/50`}
       >
         {/* Drawer Header Logo */}
-        <div className="w-full flex justify-start pb-6 mb-6 border-b border-slate-100">
-          <img src={LogoImage} className="h-10 w-auto object-contain" alt="TicketHub Brand" />
+        <div className="w-full flex justify-center pb-8 mb-8 border-b border-slate-100">
+          <img src={LogoImage} className="h-20 w-auto object-contain drop-shadow-md" alt="TicketHub Brand" />
         </div>
 
         {user && (
-          <div className='w-full flex flex-col gap-3 mb-6 flex-grow'>
-            <Link to={'/'} onClick={() => setToggleOpen(false)} className='w-full text-[16px] font-black text-slate-700 hover:text-orange-500 bg-slate-50/50 hover:bg-orange-50 border border-slate-100 rounded-2xl py-4 px-6 active:scale-95 transition-all text-center'>Home</Link>
-            <Link to={'/my_trips'} onClick={() => setToggleOpen(false)} className='w-full text-[16px] font-black text-slate-700 hover:text-orange-500 bg-slate-50/50 hover:bg-orange-50 border border-slate-100 rounded-2xl py-4 px-6 active:scale-95 transition-all text-center'>My Trips</Link>
-            <Link to={'/wallet'} onClick={() => setToggleOpen(false)} className='w-full text-[16px] font-black text-slate-700 hover:text-orange-500 bg-slate-50/50 hover:bg-orange-50 border border-slate-100 rounded-2xl py-4 px-6 active:scale-95 transition-all text-center'>Wallet</Link>
-            <Link to={'/points'} onClick={() => setToggleOpen(false)} className='w-full text-[16px] font-black text-slate-700 hover:text-orange-500 bg-slate-50/50 hover:bg-orange-50 border border-slate-100 rounded-2xl py-4 px-6 active:scale-95 transition-all text-center'>Points</Link>
+          <div className='w-full flex flex-col gap-2 mb-6 flex-grow'>
+            <Link to={'/'} onClick={() => setToggleOpen(false)} className='group flex justify-between items-center w-full text-[16px] font-black text-slate-700 hover:text-orange-500 bg-transparent hover:bg-orange-50/80 rounded-2xl py-4 px-5 active:scale-[0.98] transition-all'>
+              <span>Home</span>
+              <ChevronRight className="text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all" size={20} />
+            </Link>
+            <Link to={'/my_trips'} onClick={() => setToggleOpen(false)} className='group flex justify-between items-center w-full text-[16px] font-black text-slate-700 hover:text-orange-500 bg-transparent hover:bg-orange-50/80 rounded-2xl py-4 px-5 active:scale-[0.98] transition-all'>
+              <span>My Trips</span>
+              <ChevronRight className="text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all" size={20} />
+            </Link>
+            <Link to={'/wallet'} onClick={() => setToggleOpen(false)} className='group flex justify-between items-center w-full text-[16px] font-black text-slate-700 hover:text-orange-500 bg-transparent hover:bg-orange-50/80 rounded-2xl py-4 px-5 active:scale-[0.98] transition-all'>
+              <span>Wallet</span>
+              <ChevronRight className="text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all" size={20} />
+            </Link>
+            <Link to={'/points'} onClick={() => setToggleOpen(false)} className='group flex justify-between items-center w-full text-[16px] font-black text-slate-700 hover:text-orange-500 bg-transparent hover:bg-orange-50/80 rounded-2xl py-4 px-5 active:scale-[0.98] transition-all'>
+              <span>Points</span>
+              <ChevronRight className="text-slate-300 group-hover:text-orange-500 group-hover:translate-x-1 transition-all" size={20} />
+            </Link>
           </div>
         )}
         
         <div className='w-full flex flex-col gap-4 mt-auto border-t border-slate-100 pt-8'>
           {user ? (
-            <Link to={'/profile'} onClick={() => setToggleOpen(false)} className='w-full flex items-center justify-center gap-3 text-[16px] font-black text-white bg-slate-900 rounded-full py-4 active:scale-95 transition-transform shadow-xl shadow-slate-900/20'>
-              <LuUserRound className='text-2xl' /> Profile
-            </Link>
+            <div className="flex flex-col gap-3 w-full pb-2">
+              <Link to={'/profile'} onClick={() => setToggleOpen(false)} className='w-full flex items-center justify-center gap-3 text-[15px] font-black text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-xl py-4 active:scale-95 transition-all shadow-sm uppercase tracking-[2px]'>
+                <LuUserRound className='text-2xl' /> Profile
+              </Link>
+              <button 
+                onClick={() => { setToggleOpen(false); handleLogout(); }} 
+                className='w-full flex items-center justify-center gap-3 text-[15px] font-black text-white bg-red-500 hover:bg-red-600 rounded-xl py-4 active:scale-[0.98] transition-all shadow-md shadow-red-500/20 uppercase tracking-[2px]'
+              >
+                <TbLogout className='text-2xl' /> Log Out
+              </button>
+            </div>
           ) : (
             <div className="flex flex-col gap-4 w-full">
               <Link to={'/auth/login'} onClick={() => setToggleOpen(false)} className='w-full text-center text-[14px] text-slate-700 font-black bg-white hover:bg-slate-50 border-2 border-slate-200 hover:border-orange-400 hover:text-orange-500 uppercase tracking-[2px] py-4 rounded-xl active:scale-[0.98] transition-all shadow-sm'>
