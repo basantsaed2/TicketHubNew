@@ -1,39 +1,25 @@
-// import { Footer,Navbar } from './Components/Components';
-// import './index.css';
-// import { Outlet } from 'react-router-dom';
-// const UserLayout = () => {
-//   return (
-//     <div className='relative w-full bg-white flex flex-col items-center justify-between h-screen overflow-y-scroll overflow-x-hidden'>
-//         <div className="sticky top-0 w-full z-30">
-//             <Navbar />
-//         </div>
-//         {/* Main Content Area */}
-//         <div className="w-full mb-5">
-//             <Outlet />
-//         </div>
-//         <Footer />
-//     </div>
-//   );
-// };
-
-// export default UserLayout;
-
-
 import { Footer, Navbar } from './Components/Components';
 import './index.css';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 const UserLayout = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
   return (
-    <div className="w-full bg-white flex flex-col min-h-screen">
-      <div className="sticky top-0 w-full z-30">
+    <div className="w-full bg-[#f8fafc] flex flex-col min-h-screen relative">
+      <div className={`w-full z-[100] ${isHome ? 'fixed top-0 left-0 right-0 transition-colors duration-300' : 'sticky top-0 bg-white shadow-sm'}`}>
         <Navbar />
       </div>
+      
       {/* Main Content Area */}
-      <div className="w-full flex-grow px-5 mb-5">
+      <div className={`w-full flex-grow mb-5 ${isHome ? 'p-0' : 'px-5 mt-6 max-w-7xl mx-auto'}`}>
         <Outlet />
       </div>
-      <Footer />
+      
+      <div className="mt-auto">
+         <Footer />
+      </div>
     </div>
   );
 };

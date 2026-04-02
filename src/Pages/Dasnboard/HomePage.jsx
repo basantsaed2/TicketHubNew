@@ -4,7 +4,7 @@ import { MapContainer, TileLayer, Marker, useMapEvent } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Select from 'react-select';
 
-import backgroundImage from "../../Assets/Images/backgroundImage.png";
+const backgroundImage = "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=2021&q=80";
 import { usePost } from '../../Hooks/usePostJson';
 import { useGet } from '../../Hooks/useGet';
 import { useAuth } from '../../Context/Auth';
@@ -266,50 +266,61 @@ const TravelBooking = () => {
         </div>
       )}
 
-      <div className="relative h-[550px] flex items-center justify-center overflow-hidden">
+      {/* ULTRA PREMIUM HERO WRAPPER WITH CENTERED FORM */}
+      <div className="relative min-h-[600px] md:min-h-[750px] lg:min-h-[850px] flex flex-col items-center justify-center overflow-hidden w-full pb-10">
         <img src={backgroundImage} alt="Travel" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="relative z-10 text-center mb-24 px-4">
-          <h1 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight mb-4">Ready to explore?</h1>
-          <p className="text-lg md:text-xl font-bold text-slate-700 opacity-90">Book your next journey instantly</p>
+        
+        {/* Premium Bookaway Dark Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-black/40 to-black/70 pointer-events-none" />
+        
+        {/* Hero Text */}
+        <div className="relative z-10 text-center px-4 w-full max-w-5xl mt-24 mb-12">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-tight mb-4 drop-shadow-2xl">
+            Ready to explore?
+          </h1>
+          <p className="text-lg sm:text-xl md:text-3xl font-bold text-white/95 drop-shadow-lg tracking-wide">
+            Book your next journey instantly
+          </p>
         </div>
-      </div>
 
-      <div className="relative -mt-60 z-30 w-full px-4 lg:px-8 xl:px-12">
-        <BookingSearchForm
-          cities={cities}
-          countries={countries}
-          cars={cars}
-          filterMode={filterMode}
-          setFilterMode={setFilterMode}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          selectedFromCity={selectedFromCity}
-          setSelectedFromCity={setSelectedFromCity}
-          selectedToCity={selectedToCity}
-          setSelectedToCity={setSelectedToCity}
-          selectedCountry={selectedCountry}
-          setSelectedCountry={setSelectedCountry}
-          selectedCar={selectedCar}
-          setSelectedCar={setSelectedCar}
-          travelDate={travelDate}
-          setTravelDate={setTravelDate}
-          roundDate={roundDate}
-          setRoundDate={setRoundDate}
-          passengerCounts={passengerCounts}
-          setPassengerCounts={setPassengerCounts}
-          addressFrom={addressFrom}
-          setAddressFrom={setAddressFrom}
-          addressTo={addressTo}
-          setAddressTo={setAddressTo}
-          showTravelerMenu={showTravelerMenu}
-          setShowTravelerMenu={setShowTravelerMenu}
-          loadingPost={loadingPost}
-          loadingPrivate={loadingPrivate}
-          onSearch={handleSubmit}
-          onMapFromOpen={() => setShowMapFrom(true)}
-          onMapToOpen={() => setShowMapTo(true)}
-          onSwitchCities={handleSwitchCities}
-        />
+        {/* Search Form Pulled Inside */}
+        <div className="relative z-30 w-full px-4 lg:px-8 xl:px-12 max-w-7xl mx-auto">
+          <BookingSearchForm
+            cities={cities}
+            countries={countries}
+            cars={cars}
+            filterMode={filterMode}
+            setFilterMode={setFilterMode}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            selectedFromCity={selectedFromCity}
+            setSelectedFromCity={setSelectedFromCity}
+            selectedToCity={selectedToCity}
+            setSelectedToCity={setSelectedToCity}
+            selectedCountry={selectedCountry}
+            setSelectedCountry={setSelectedCountry}
+            selectedCar={selectedCar}
+            setSelectedCar={setSelectedCar}
+            travelDate={travelDate}
+            setTravelDate={setTravelDate}
+            roundDate={roundDate}
+            setRoundDate={setRoundDate}
+            passengerCounts={passengerCounts}
+            setPassengerCounts={setPassengerCounts}
+            addressFrom={addressFrom}
+            setAddressFrom={setAddressFrom}
+            addressTo={addressTo}
+            setAddressTo={setAddressTo}
+            showTravelerMenu={showTravelerMenu}
+            setShowTravelerMenu={setShowTravelerMenu}
+            loadingPost={loadingPost}
+            loadingPrivate={loadingPrivate}
+            onSearch={handleSubmit}
+            onMapFromOpen={() => setShowMapFrom(true)}
+            onMapToOpen={() => setShowMapTo(true)}
+            onSwitchCities={handleSwitchCities}
+          />
+        </div>
       </div>
 
       {/* NEW SECTION 1: Features */}

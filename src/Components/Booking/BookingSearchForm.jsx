@@ -80,7 +80,7 @@ const BookingSearchForm = ({
     indicatorSeparator: () => ({ display: 'none' }),
     dropdownIndicator: (base) => ({ ...base, padding: '0 4px', color: '#cbd5e1' }),
     menuPortal: base => ({ ...base, zIndex: 9999 }),
-    menu: base => ({ ...base, borderRadius: '20px', border: '1px solid #f1f5f9', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', padding: '8px' }),
+    menu: base => ({ ...base, borderRadius: '20px', border: '1px solid #f1f5f9', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', padding: '8px', minWidth: '240px' }),
     option: (base, { isFocused, isSelected }) => ({
       ...base,
       borderRadius: '12px',
@@ -88,8 +88,9 @@ const BookingSearchForm = ({
       backgroundColor: isSelected ? '#f97316' : isFocused ? '#fff7ed' : 'transparent',
       color: isSelected ? 'white' : '#475569',
       fontWeight: '700',
-      fontSize: '13px',
+      fontSize: '14px',
       cursor: 'pointer',
+      whiteSpace: 'nowrap',
       ':active': { backgroundColor: '#fdba74' }
     }),
     placeholder: (base) => ({ ...base, color: '#64748b', fontSize: '14px', fontWeight: '900' })
@@ -125,9 +126,9 @@ const BookingSearchForm = ({
       </div>
 
       {/* SEARCH BOX */}
-      <div className="bg-white rounded-[40px] shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] border border-slate-50">
+      <div className="bg-white md:rounded-[40px] rounded-3xl shadow-[0_40px_80px_-15px_rgba(0,0,0,0.15)] border border-slate-50 w-full mb-10 overflow-visible">
         <form onSubmit={onSearch} className="flex flex-col">
-          <div className="flex flex-col lg:flex-row items-stretch lg:items-center lg:divide-x divide-slate-100 p-3">
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center lg:divide-x divide-slate-100 p-2 md:p-3 gap-0">
 
             {filterMode === "private" && (
               <div className="flex-1 px-5 py-4 group hover:bg-slate-50/80 transition-all cursor-pointer">
@@ -138,19 +139,19 @@ const BookingSearchForm = ({
               </div>
             )}
 
-            <div className="flex-[1.8] px-5 py-4 group hover:bg-slate-50/80 transition-all flex items-center gap-3">
-              <div className="flex-1">
+            <div className="flex-[1.8] px-4 md:px-5 py-4 lg:py-4 border-b border-slate-100 lg:border-b-0 group hover:bg-slate-50/80 transition-all flex items-center justify-between">
+              <div className="flex-1 overflow-visible">
                 <label className="flex items-center gap-2 text-[11px] font-black text-slate-400 uppercase tracking-wider mb-1.5 transition-colors group-hover:text-orange-500">
                   <MapPin size={13} className="text-orange-500" /> From
                 </label>
                 <Select options={cities} value={selectedFromCity} onChange={setSelectedFromCity} placeholder="Origin" styles={selectStyles} menuPortalTarget={document.body} />
               </div>
-              <button type="button" onClick={onSwitchCities} className="mt-5 p-2.5 bg-slate-100/50 rounded-full hover:bg-orange-500 hover:text-white transition-all transform hover:rotate-180 duration-500 text-slate-400 shadow-sm border border-slate-200/50">
+              <button type="button" onClick={onSwitchCities} className="ml-3 mt-4 p-2.5 bg-slate-100/50 rounded-full hover:bg-orange-500 hover:text-white transition-all transform hover:rotate-180 duration-500 text-slate-400 shadow-sm border border-slate-200/50 flex-shrink-0">
                 <ArrowLeftRight size={16} />
               </button>
             </div>
 
-            <div className="flex-[1.8] px-5 py-4 group hover:bg-slate-50/80 transition-all cursor-pointer">
+            <div className="flex-[1.8] px-4 md:px-5 py-4 border-b border-slate-100 lg:border-b-0 group hover:bg-slate-50/80 transition-all cursor-pointer overflow-visible">
               <label className="flex items-center gap-2 text-[11px] font-black text-slate-400 uppercase tracking-wider mb-1.5 transition-colors group-hover:text-orange-500">
                 <Navigation size={13} className="text-orange-500" /> To
               </label>

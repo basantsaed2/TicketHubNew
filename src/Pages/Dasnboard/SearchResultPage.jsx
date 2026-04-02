@@ -125,8 +125,13 @@ export default function SearchResultPage() {
   useEffect(() => {
     if (bookingListData) {
       const citiesList = bookingListData.cities?.map(c => ({ value: String(c.id), label: c.name })) || [];
-      setCities(citiesList);
-      setCountries(bookingListData.countries?.map(c => ({ value: String(c.id), label: c.name })) || []);
+setCities(bookingListData.cities?.map(c => {
+        const country = bookingListData.countries?.find(cntry => cntry.id === c.country_id);
+        return { 
+          value: String(c.id), 
+          label: country ? `${c.name}, ${country.name}` : c.name 
+        };
+      }) || []);      setCountries(bookingListData.countries?.map(c => ({ value: String(c.id), label: c.name })) || []);
       setCars(bookingListData.car_category?.map(c => ({ value: String(c.id), label: c.name })) || []);
 
       // Fix: once we have cities, resolve if displaySearchData.from looks like an ID (numeric)
@@ -202,7 +207,7 @@ export default function SearchResultPage() {
     <div className="min-h-screen font-sans" style={{ background: "linear-gradient(135deg,#f8fafc 0%,#f1f5f9 100%)" }}>
 
       {/* ============ STICKY HEADER ============ */}
-      <header className="sticky top-0 z-50 shadow-lg" style={{ background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)" }}>
+      <header className="sticky top-[64px] md:top-[88px] z-40 shadow-lg" style={{ background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)" }}>
         {/* Top bar */}
         <div className="w-full px-3 sm:px-6 py-3 flex items-center gap-3">
 
@@ -275,7 +280,7 @@ export default function SearchResultPage() {
       </header>
 
       {/* ============ TRANSPORT TABS ============ */}
-      <nav className="bg-white border-b shadow-sm sticky top-[56px] sm:top-[68px] z-40 overflow-x-auto">
+      <nav className="bg-white border-b shadow-sm sticky top-[120px] sm:top-[144px] md:top-[156px] z-[35] overflow-x-auto">
         <div className="w-full px-2 sm:px-4 flex">
           {[
             { id: "all", label: "All", icon: null },
